@@ -1,21 +1,102 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark darkbg" style="color: white">
+      <a class="navbar-brand" @click="goHome">
+        <img
+          src="@/assets/HelenaOordeel.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt
+        />
+        Paradise Wiki
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" @click="goHome">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="goCharacters">Characters</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <router-view />
   </div>
 </template>
 
+<script>
+import router from "./router";
+
+export default {
+  name: "App",
+  mounted() {},
+  data() {
+    return {};
+  },
+  methods: {
+    goHome() {
+      router.push({ name: "home" });
+    },
+    goCharacters() {
+      router.push({ name: "characters" });
+    }
+  },
+  components: {},
+  computed: {}
+};
+</script>
+
 <style>
+body {
+  color: #e3e9e9;
+  background-color: #454b4b;
+}
+
+a {
+  color: #5fc8cc;
+}
+
+a:hover {
+  color: #56b6b9;
+}
+
+.darkbg {
+  background-image: linear-gradient(#424b4b, #373a3a);
+}
+
+.card {
+  background-color: #303333;
+}
+
+.modal-content {
+  color: black;
+}
+
+.progress {
+  background-color: #303333;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
+
 #nav {
   padding: 30px;
 }

@@ -57,6 +57,11 @@ export default new Vuex.Store({
       commit("setActiveCharacter", payload);
       router.push({ name: "character", params: { characterId: payload._id } });
     },
+    setActiveCharacterById({ commit, dispatch }, payload) {
+      api.get("characters/" + payload).then(res => {
+        commit("setActiveCharacter", res.data);
+      });
+    },
 
     getSections({ commit, dispatch }) {
       api.get("sections/").then(res => {
@@ -76,6 +81,12 @@ export default new Vuex.Store({
         console.log("section edited");
         console.log(res.data);
         // commit("setActiveCharacter", res.data);
+      });
+    },
+    deleteSect({ commit, dispatch }, payload) {
+      api.delete("sections/" + payload._id, payload).then(res => {
+        console.log("section deleted");
+        console.log(res.data);
       });
     }
   }

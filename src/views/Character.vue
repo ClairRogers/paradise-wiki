@@ -17,7 +17,9 @@
         </small>
       </div>
       <div class="col-12 mb-3">
-        <img :src="activeCharacter.image" class="characterImage" alt />
+        <a :href="activeCharacter.image" target="_blank">
+          <img :src="activeCharacter.image" class="characterImage" alt />
+        </a>
       </div>
     </div>
     <div class="row text-center">
@@ -141,53 +143,37 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 d-flex justify-content-between py-2">
+    <div class="row mb-4">
+      <div class="col-12 d-flex justify-content-center py-2">
         <h2>About</h2>
-        <button v-if="!newSectShow" class="btn btn-secondary" @click="newSectShow = !newSectShow">
+        <button
+          v-if="!newSectShow"
+          class="btn btn-secondary hoverinbutton"
+          @click="newSectShow = !newSectShow"
+        >
           <i class="fas fa-plus"></i> Add Section
         </button>
+        <button
+          v-if="newSectShow"
+          @click="newSectShow = !newSectShow"
+          class="btn btn-danger hoverinbutton"
+          type="button"
+        >Cancel</button>
       </div>
     </div>
     <div class="row" v-if="newSectShow">
-      <div class="col">
-        <form width="100" @submit.prevent="newSect()">
-          <div class="form-row">
-            <div class="form-group col-md-10">
-              <input
-                v-model="newSect.title"
-                type="text"
-                class="form-control"
-                id="title"
-                placeholder="Title"
-                required="true"
-              />
-            </div>
-            <div class="form-group col-md-2">
-              <input
-                v-model="newSect.order"
-                type="number"
-                class="form-control"
-                id="order"
-                placeholder="Order"
-                required="true"
-              />
-            </div>
-            <div class="form-group col-md-12">
-              <textarea
-                v-model="newSect.body"
-                class="form-control"
-                id="body"
-                rows="3"
-                placeholder="Your content here"
-              ></textarea>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-end">
-            <button type="submit" class="btn btn-success mx-2">Submit</button>
-            <button @click="newSectShow = !newSectShow" class="btn btn-danger mx-2">Cancel</button>
-          </div>
-        </form>
+      <sectionform></sectionform>
+    </div>
+    <div class="row mb-3" v-for="sect in sections">
+      <div class="col-12 text-left">
+        <span class="d-flex justify-content-between">
+          <h2>{{sect.title}}</h2>
+          <p class="editbutton">
+            <i class="fas fa-edit" title="Edit Section"></i>
+            <i class="fas fa-ban ml-2" title="Delete Section" @click="deleteSect(sect)"></i>
+          </p>
+        </span>
+        <span v-html="sect.body"></span>
       </div>
     </div>
     <editcharactermodal></editcharactermodal>
@@ -197,29 +183,45 @@
 <script>
 // @ is an alias to /src
 import editcharactermodal from "@/components/EditCharacterModal.vue";
+import sectionform from "@/components/SectionForm.vue";
 
 export default {
   name: "Character",
   mounted() {
     this.$store.dispatch("getCharacters");
+    if (this.$route.params.characterId) {
+      this.$store.dispatch(
+        "setActiveCharacterById",
+        this.$route.params.characterId
+      );
+    }
+    this.$store.dispatch("getSections");
   },
   props: ["characterId"],
   data() {
     return {
-      newSectShow: false,
-      newSect: {
-        character: this.$store.state.activeCharacter
-      }
+      newSectShow: false
     };
   },
   computed: {
     activeCharacter() {
       return this.$store.state.activeCharacter;
+    },
+    sections() {
+      return this.$store.state.sections.filter(
+        s => s.charId == this.$store.state.activeCharacter._id
+      );
     }
   },
-  methods: {},
+  methods: {
+    deleteSect(sect) {
+      this.$store.dispatch("deleteSect", sect);
+      this.$forceUpdate();
+    }
+  },
   components: {
-    editcharactermodal
+    editcharactermodal,
+    sectionform
   }
 };
 </script>
@@ -242,5 +244,10 @@ export default {
   font-size: 17px;
   color: rgb(179, 179, 179);
   cursor: pointer;
+}
+
+.hoverinbutton {
+  position: absolute;
+  right: 0px;
 }
 </style>

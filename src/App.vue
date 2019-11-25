@@ -63,7 +63,7 @@ export default {
 <style>
 body {
   color: #e3e9e9;
-  background-color: #454b4b;
+  background-color: #292c33;
 }
 
 a {
@@ -74,12 +74,20 @@ a:hover {
   color: #56b6b9;
 }
 
+h2 {
+  color: #7683a0;
+}
+
+h3 {
+  font-size: 25px;
+}
+
 .darkbg {
-  background-image: linear-gradient(#424b4b, #373a3a);
+  background-image: linear-gradient(#292c33, #1d2025);
 }
 
 .card {
-  background-color: #303333;
+  background-color: #1d2025;
 }
 
 .modal-content {
@@ -87,7 +95,7 @@ a:hover {
 }
 
 .progress {
-  background-color: #303333;
+  background-color: #1d2025;
 }
 
 #app {

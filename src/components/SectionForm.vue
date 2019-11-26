@@ -8,7 +8,8 @@
             type="text"
             class="form-control"
             id="title"
-            placeholder="Section title (optional)"
+            placeholder="Title"
+            required="true"
           />
         </div>
         <div class="form-group col-md-12 text-left mb-2">
@@ -148,11 +149,19 @@
                 <i class="fas fa-minus"></i>
               </button>-->
 
-              <button type="button" class="btn btn-dark btn-sm" @click="commands.undo">
+              <button
+                type="button"
+                class="btn btn-dark btn-sm"
+                @click="commands.undo"
+              >
                 <i class="fas fa-undo"></i>
               </button>
 
-              <button type="button" class="btn btn-dark btn-sm" @click="commands.redo">
+              <button
+                type="button"
+                class="btn btn-dark btn-sm"
+                @click="commands.redo"
+              >
                 <i class="fas fa-redo"></i>
               </button>
 
@@ -202,6 +211,7 @@
 
 <script>
 // @ is an alias to /src
+import Swal from "sweetalert2";
 import { Editor, EditorContent, EditorMenuBar, EditorMenuBubble } from "tiptap";
 import {
   Blockquote,
@@ -280,6 +290,12 @@ export default {
       this.newSect = {
         charId: this.$store.state.activeCharacter._id
       };
+      Swal.fire({
+        title: "Success!",
+        text: "New section created! Refresh the page to view.",
+        icon: "success",
+        confirmButtonText: "Ok"
+      });
     },
     setToTrue() {
       console.log(this.linkMenuIsActive);
@@ -304,7 +320,8 @@ export default {
   components: {
     EditorContent,
     EditorMenuBar,
-    EditorMenuBubble
+    EditorMenuBubble,
+    Swal
   }
 };
 </script>

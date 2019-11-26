@@ -53,6 +53,14 @@ export default new Vuex.Store({
       });
     },
 
+    deleteChar({ commit, dispatch }, payload) {
+      api.delete("characters/" + payload._id, payload).then(res => {
+        console.log("Character deleted");
+        console.log(res.data);
+        router.push({ name: "characters" });
+      });
+    },
+
     setActiveCharacter({ commit, dispatch }, payload) {
       commit("setActiveCharacter", payload);
       router.push({ name: "character", params: { characterId: payload._id } });

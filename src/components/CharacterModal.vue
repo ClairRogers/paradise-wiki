@@ -12,7 +12,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="characterModalTitle">Add Character</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -94,10 +99,9 @@
                     <option>BR</option>
                     <option>AC</option>
                   </select>
-                  <small
-                    id="otherHelp"
-                    class="form-text text-muted"
-                  >Before Reckoning / After Cleanse</small>
+                  <small id="otherHelp" class="form-text text-muted"
+                    >Before Reckoning / After Cleanse</small
+                  >
                 </div>
               </div>
               <div class="form-row">
@@ -135,7 +139,11 @@
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="season">Season</label>
-                  <select v-model="newCh.season" id="season" class="form-control">
+                  <select
+                    v-model="newCh.season"
+                    id="season"
+                    class="form-control"
+                  >
                     <option>The Paradise Trials</option>
                     <option>Paradise Rising</option>
                     <option>None</option>
@@ -153,7 +161,9 @@
                         id="inlineRadio1"
                         value="true"
                       />
-                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                      <label class="form-check-label" for="inlineRadio1"
+                        >Yes</label
+                      >
                     </div>
                     <div class="form-check form-check-inline ml-2">
                       <input
@@ -164,7 +174,9 @@
                         id="inlineRadio2"
                         value="false"
                       />
-                      <label class="form-check-label" for="inlineRadio2">No</label>
+                      <label class="form-check-label" for="inlineRadio2"
+                        >No</label
+                      >
                     </div>
                   </div>
                 </div>
@@ -182,7 +194,11 @@
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="soulClass">Soul Class</label>
-                  <select v-model="newCh.soulClass" id="soulClass" class="form-control">
+                  <select
+                    v-model="newCh.soulClass"
+                    id="soulClass"
+                    class="form-control"
+                  >
                     <option>Red</option>
                     <option>Blue</option>
                     <option>Green</option>
@@ -213,7 +229,10 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4">
-                  <label for="soulPartner" class="d-flex justify-content-between">
+                  <label
+                    for="soulPartner"
+                    class="d-flex justify-content-between"
+                  >
                     Soul Partner
                     <!-- <span v-if="newSoulPartner == true">
                       <i
@@ -359,18 +378,29 @@
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="other">Other Important Info</label>
-                  <input v-model="newCh.other" type="text" class="form-control" id="other" />
-                  <small
-                    id="otherHelp"
-                    class="form-text text-muted"
-                  >Include any important information here. Note: large sections of text should not be added here.</small>
+                  <input
+                    v-model="newCh.other"
+                    type="text"
+                    class="form-control"
+                    id="other"
+                  />
+                  <small id="otherHelp" class="form-text text-muted"
+                    >Include any important information here. Note: large
+                    sections of text should not be added here.</small
+                  >
                 </div>
               </div>
               <button type="submit" class="btn btn-primary">Add</button>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -379,6 +409,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   name: "charactermodal",
   mounted() {
@@ -409,8 +441,17 @@ export default {
       this.$store.dispatch("newChara", this.newCh);
       this.$store.dispatch("getCharacters");
       this.newCh = {};
+      Swal.fire({
+        title: "Success!",
+        text: "Character created successfully.",
+        icon: "success",
+        confirmButtonText: "Ok"
+      });
+      $("#characterModal").modal("hide");
     }
   },
-  components: {}
+  components: {
+    Swal
+  }
 };
 </script>

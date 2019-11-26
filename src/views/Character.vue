@@ -3,7 +3,7 @@
     <div class="row text-center">
       <div class="col-12 mb-3">
         <h1>
-          {{activeCharacter.name}}
+          {{ activeCharacter.name }}
           <i
             class="fas fa-edit editbutton"
             title="Edit Character"
@@ -13,7 +13,9 @@
         </h1>
         <small v-if="activeCharacter.ownerName">
           Owned by
-          <a v-bind:href="activeCharacter.ownerUrl">{{activeCharacter.ownerName}}</a>
+          <a v-bind:href="activeCharacter.ownerUrl">{{
+            activeCharacter.ownerName
+          }}</a>
         </small>
       </div>
       <div v-if="activeCharacter.image" class="col-12 mb-3">
@@ -26,52 +28,54 @@
       <div class="col-md-4 offset-md-2">
         <p>
           <b class="boldColor">Name:</b>
-          {{activeCharacter.name}}
+          {{ activeCharacter.name }}
         </p>
         <p v-if="activeCharacter.otherNames">
           <b class="boldColor">Other Names:</b>
-          {{activeCharacter.otherNames}}
+          {{ activeCharacter.otherNames }}
         </p>
         <p v-if="activeCharacter.age">
           <b class="boldColor">Age:</b>
-          {{activeCharacter.age}}
+          {{ activeCharacter.age }}
         </p>
         <p v-if="activeCharacter.gender">
           <b class="boldColor">Gender:</b>
-          {{activeCharacter.gender}} ({{activeCharacter.pronouns}})
+          {{ activeCharacter.gender }} ({{ activeCharacter.pronouns }})
         </p>
         <p v-if="activeCharacter.born">
           <b class="boldColor">Year Born:</b>
-          {{activeCharacter.born}} {{activeCharacter.era}}
+          {{ activeCharacter.born }} {{ activeCharacter.era }}
         </p>
-        <p v-if="activeCharacter.diedIn">Year Died: {{activeCharacter.diedIn}}</p>
+        <p v-if="activeCharacter.diedIn">
+          Year Died: {{ activeCharacter.diedIn }}
+        </p>
       </div>
       <div class="col-md-4">
         <p v-if="activeCharacter.season">
           <b class="boldColor">Season:</b>
-          {{activeCharacter.season}}
+          {{ activeCharacter.season }}
         </p>
         <p v-if="activeCharacter.sect">
           <b class="boldColor">Sect:</b>
-          {{activeCharacter.sect}}
+          {{ activeCharacter.sect }}
         </p>
         <p v-if="activeCharacter.soulClass">
           <b class="boldColor">Soul Class:</b>
-          {{activeCharacter.soulClass}}
+          {{ activeCharacter.soulClass }}
         </p>
         <p v-if="activeCharacter.soulShade">
           <b class="boldColor">Soul Shade:</b>
-          {{activeCharacter.soulShade}}
+          {{ activeCharacter.soulShade }}
         </p>
         <p v-if="activeCharacter.soulLevel">
           <b class="boldColor">Soul Level:</b>
-          {{activeCharacter.soulLevel}}
+          {{ activeCharacter.soulLevel }}
         </p>
       </div>
       <div class="col-md-8 offset-md-2 mt-1">
         <p v-if="activeCharacter.other">
           <b class="boldColor">Other:</b>
-          {{activeCharacter.other}}
+          {{ activeCharacter.other }}
         </p>
       </div>
     </div>
@@ -79,15 +83,15 @@
       <div class="col-md-4 offset-md-2">
         <p v-if="activeCharacter.soulPartner" class="mt-3">
           <b class="boldColor">Soul Partner:</b>
-          {{activeCharacter.soulPartner}}
+          {{ activeCharacter.soulPartner }}
         </p>
         <p v-if="activeCharacter.mate">
           <b class="boldColor">Mate:</b>
-          {{activeCharacter.mate}}
+          {{ activeCharacter.mate }}
         </p>
         <p v-if="activeCharacter.family">
           <b class="boldColor">Family:</b>
-          {{activeCharacter.family}}
+          {{ activeCharacter.family }}
         </p>
       </div>
       <div class="col-md-4">
@@ -99,7 +103,9 @@
             aria-valuenow="25"
             aria-valuemin="0"
             aria-valuemax="100"
-          >Intelligence: {{activeCharacter.INT}}</div>
+          >
+            Intelligence: {{ activeCharacter.INT }}
+          </div>
         </div>
         <div class="progress mt-3" style="height: 23px;">
           <div
@@ -109,7 +115,9 @@
             aria-valuenow="25"
             aria-valuemin="0"
             aria-valuemax="100"
-          >Charisma: {{activeCharacter.CHAR}}</div>
+          >
+            Charisma: {{ activeCharacter.CHAR }}
+          </div>
         </div>
         <div class="progress mt-3" style="height: 23px;">
           <div
@@ -119,7 +127,9 @@
             aria-valuenow="25"
             aria-valuemin="0"
             aria-valuemax="100"
-          >Stamina: {{activeCharacter.STAM}}</div>
+          >
+            Stamina: {{ activeCharacter.STAM }}
+          </div>
         </div>
         <div class="progress mt-3" style="height: 23px;">
           <div
@@ -129,7 +139,9 @@
             aria-valuenow="25"
             aria-valuemin="0"
             aria-valuemax="100"
-          >Strength: {{activeCharacter.STR}}</div>
+          >
+            Strength: {{ activeCharacter.STR }}
+          </div>
         </div>
         <div class="progress mt-3" style="height: 23px;">
           <div
@@ -139,7 +151,9 @@
             aria-valuenow="25"
             aria-valuemin="0"
             aria-valuemax="100"
-          >Speed: {{activeCharacter.SPD}}</div>
+          >
+            Speed: {{ activeCharacter.SPD }}
+          </div>
         </div>
       </div>
     </div>
@@ -158,7 +172,9 @@
           @click="newSectShow = !newSectShow"
           class="btn btn-danger hoverinbutton"
           type="button"
-        >Cancel</button>
+        >
+          Cancel
+        </button>
       </div>
     </div>
     <editcharactermodal></editcharactermodal>
@@ -168,10 +184,14 @@
     <div class="row mt-3" v-for="sect in sections">
       <div class="col-12 text-left">
         <span class="d-flex justify-content-between">
-          <h2>{{sect.title}}</h2>
+          <h2>{{ sect.title }}</h2>
           <p class="editbutton">
             <i class="fas fa-edit" title="Edit Section"></i>
-            <i class="fas fa-ban ml-2" title="Delete Section" @click="deleteSect(sect)"></i>
+            <i
+              class="fas fa-ban ml-2"
+              title="Delete Section"
+              @click="deleteSect(sect)"
+            ></i>
           </p>
         </span>
         <span v-html="sect.body"></span>
@@ -182,6 +202,7 @@
 
 <script>
 // @ is an alias to /src
+import Swal from "sweetalert2";
 import editcharactermodal from "@/components/EditCharacterModal.vue";
 import sectionform from "@/components/SectionForm.vue";
 
@@ -215,13 +236,26 @@ export default {
   },
   methods: {
     deleteSect(sect) {
-      this.$store.dispatch("deleteSect", sect);
-      this.$forceUpdate();
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch("deleteSect", sect);
+          Swal.fire("Deleted!", "Section has been deleted.", "success");
+        }
+      });
     }
   },
   components: {
     editcharactermodal,
-    sectionform
+    sectionform,
+    Swal
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark darkbg" style="color: white">
-      <a class="navbar-brand" @click="goHome">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark darkbg mb-3" style="color: white">
+      <a class="navbar-brand pointer" @click="goHome">
         <img
           src="@/assets/HelenaOordeel.png"
           width="30"
@@ -24,17 +24,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li class="nav-item pointer">
             <a class="nav-link" @click="goHome">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item pointer">
             <a class="nav-link" @click="goCharacters">Characters</a>
+          </li>
+          <li class="nav-item pointer">
+            <a class="nav-link" @click="goGods">Gods</a>
+          </li>
+          <li class="nav-item pointer">
+            <a class="nav-link" @click="goSocieties">Societies</a>
           </li>
         </ul>
       </div>
     </nav>
 
     <router-view />
+    <nav class="footer navbar-dark darkbg d-flex justify-content-center align-items-end">
+      <small>
+        Site Created by
+        <a href="https://clairrogers.github.io/">Clair Rogers</a>
+      </small>
+    </nav>
   </div>
 </template>
 
@@ -53,6 +65,12 @@ export default {
     },
     goCharacters() {
       router.push({ name: "characters" });
+    },
+    goGods() {
+      router.push({ name: "gods" });
+    },
+    goSocieties() {
+      router.push({ name: "societies" });
     }
   },
   components: {},
@@ -62,8 +80,10 @@ export default {
 
 <style>
 body {
-  color: #e3e9e9;
+  color: #c5c9d6;
   background-color: #292c33;
+  min-height: 100vh;
+  position: relative;
 }
 
 a {
@@ -82,12 +102,24 @@ h3 {
   font-size: 25px;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
 .darkbg {
   background-image: linear-gradient(#292c33, #1d2025);
 }
 
 .card {
   background-color: #1d2025;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .modal-content {

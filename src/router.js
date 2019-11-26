@@ -3,6 +3,8 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Character from "../src/views/Character.vue";
 import CharacterList from "../src/views/CharacterList.vue";
+import GodList from "../src/views/GodList.vue";
+import SocietyList from "../src/views/SocietyList.vue";
 
 Vue.use(Router);
 
@@ -34,6 +36,18 @@ export default new Router({
       name: "character",
       props: true,
       component: Character
+    },
+    {
+      path: "/gods",
+      name: "gods",
+      props: true,
+      component: GodList
+    },
+    {
+      path: "/societies",
+      name: "societies",
+      props: true,
+      component: SocietyList
     }
   ]
 });

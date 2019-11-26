@@ -11,17 +11,18 @@
       </div>
     </div>
     <div class="row">
-      <div v-for="character in characters" class="col-md-4">
-        <div class="card">
+      <div class="col-12 text-left">
+        <h1>A</h1>
+      </div>
+      <div v-for="character in characters" class="col-md-3 col-6">
+        <div class="card pointer" @click="setActiveCharacter(character)">
           <img :src="character.image" class="card-img-top" />
           <div class="card-body">
             <h5 class="card-title">{{character.name}}</h5>
-            <button class="btn btn-secondary" @click="setActiveCharacter(character)">View Character</button>
           </div>
         </div>
       </div>
     </div>
-
     <charactermodal></charactermodal>
   </div>
 </template>
@@ -46,7 +47,32 @@ export default {
   },
   computed: {
     characters() {
-      return this.$store.state.characters.sort(this.compare);
+      return this.$store.state.characters; //.sort(this.compare);
+    },
+    charactersA() {
+      return this.$store.state.characters
+        .filter(c => c.name.startsWith("A"))
+        .sort(this.compare);
+    },
+    charactersA() {
+      return this.$store.state.characters
+        .filter(c => c.name.startsWith("B"))
+        .sort(this.compare);
+    },
+    charactersA() {
+      return this.$store.state.characters
+        .filter(c => c.name.startsWith("C"))
+        .sort(this.compare);
+    },
+    charactersA() {
+      return this.$store.state.characters
+        .filter(c => c.name.startsWith("D"))
+        .sort(this.compare);
+    },
+    charactersA() {
+      return this.$store.state.characters
+        .filter(c => c.name.startsWith("E"))
+        .sort(this.compare);
     }
   },
   methods: {
@@ -70,3 +96,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.pointer {
+  cursor: pointer;
+}
+</style>

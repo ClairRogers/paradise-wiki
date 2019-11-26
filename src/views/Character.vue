@@ -11,12 +11,12 @@
             data-target="#editCharacterModal"
           ></i>
         </h1>
-        <small>
+        <small v-if="activeCharacter.ownerName">
           Owned by
           <a v-bind:href="activeCharacter.ownerUrl">{{activeCharacter.ownerName}}</a>
         </small>
       </div>
-      <div class="col-12 mb-3">
+      <div v-if="activeCharacter.image" class="col-12 mb-3">
         <a :href="activeCharacter.image" target="_blank">
           <img :src="activeCharacter.image" class="characterImage" alt />
         </a>
@@ -25,68 +25,68 @@
     <div class="row text-center">
       <div class="col-md-4 offset-md-2">
         <p>
-          <b>Name:</b>
+          <b class="boldColor">Name:</b>
           {{activeCharacter.name}}
         </p>
-        <p>
-          <b>Other Names:</b>
+        <p v-if="activeCharacter.otherNames">
+          <b class="boldColor">Other Names:</b>
           {{activeCharacter.otherNames}}
         </p>
-        <p>
-          <b>Age:</b>
+        <p v-if="activeCharacter.age">
+          <b class="boldColor">Age:</b>
           {{activeCharacter.age}}
         </p>
-        <p>
-          <b>Gender:</b>
+        <p v-if="activeCharacter.gender">
+          <b class="boldColor">Gender:</b>
           {{activeCharacter.gender}} ({{activeCharacter.pronouns}})
         </p>
-        <p>
-          <b>Year Born:</b>
+        <p v-if="activeCharacter.born">
+          <b class="boldColor">Year Born:</b>
           {{activeCharacter.born}} {{activeCharacter.era}}
         </p>
         <p v-if="activeCharacter.diedIn">Year Died: {{activeCharacter.diedIn}}</p>
       </div>
       <div class="col-md-4">
-        <p>
-          <b>Season:</b>
+        <p v-if="activeCharacter.season">
+          <b class="boldColor">Season:</b>
           {{activeCharacter.season}}
         </p>
-        <p>
-          <b>Sect:</b>
+        <p v-if="activeCharacter.sect">
+          <b class="boldColor">Sect:</b>
           {{activeCharacter.sect}}
         </p>
-        <p>
-          <b>Soul Class:</b>
+        <p v-if="activeCharacter.soulClass">
+          <b class="boldColor">Soul Class:</b>
           {{activeCharacter.soulClass}}
         </p>
-        <p>
-          <b>Soul Shade:</b>
+        <p v-if="activeCharacter.soulShade">
+          <b class="boldColor">Soul Shade:</b>
           {{activeCharacter.soulShade}}
         </p>
-        <p>
-          <b>Soul Level:</b>
+        <p v-if="activeCharacter.soulLevel">
+          <b class="boldColor">Soul Level:</b>
           {{activeCharacter.soulLevel}}
         </p>
       </div>
       <div class="col-md-8 offset-md-2 mt-1">
-        <p>
-          <b>Other:</b>
+        <p v-if="activeCharacter.other">
+          <b class="boldColor">Other:</b>
           {{activeCharacter.other}}
         </p>
       </div>
     </div>
     <div class="row topline pb-3">
       <div class="col-md-4 offset-md-2">
-        <p class="mt-3">
-          <b>Soul Partner:</b>
+        <p v-if="activeCharacter.soulPartner" class="mt-3">
+          <b class="boldColor">Soul Partner:</b>
           {{activeCharacter.soulPartner}}
         </p>
-        <p>
-          <b>Mate:</b>
+        <p v-if="activeCharacter.mate">
+          <b class="boldColor">Mate:</b>
           {{activeCharacter.mate}}
         </p>
-        <p>
-          <b>Family:</b>
+        <p v-if="activeCharacter.family">
+          <b class="boldColor">Family:</b>
           {{activeCharacter.family}}
         </p>
       </div>
@@ -161,10 +161,11 @@
         >Cancel</button>
       </div>
     </div>
+    <editcharactermodal></editcharactermodal>
     <div class="row" v-if="newSectShow">
       <sectionform></sectionform>
     </div>
-    <div class="row mb-3" v-for="sect in sections">
+    <div class="row mt-3" v-for="sect in sections">
       <div class="col-12 text-left">
         <span class="d-flex justify-content-between">
           <h2>{{sect.title}}</h2>
@@ -176,7 +177,6 @@
         <span v-html="sect.body"></span>
       </div>
     </div>
-    <editcharactermodal></editcharactermodal>
   </div>
 </template>
 
@@ -249,5 +249,9 @@ export default {
 .hoverinbutton {
   position: absolute;
   right: 0px;
+}
+
+.boldColor {
+  color: #7683a0;
 }
 </style>

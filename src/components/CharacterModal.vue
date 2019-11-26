@@ -404,6 +404,8 @@ export default {
       } else if (this.newCh.months && this.newCh.months != "") {
         this.newCh.age = `${this.newCh.months} months`;
       }
+      this.newCh.name =
+        this.newCh.name.charAt(0).toUpperCase() + this.newCh.name.substring(1);
       this.$store.dispatch("newChara", this.newCh);
       this.$store.dispatch("getCharacters");
       this.newCh = {};
